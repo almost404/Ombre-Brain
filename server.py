@@ -1939,8 +1939,6 @@ if __name__ == "__main__":
         # --- 添加 CORS 中间件，让远程客户端（Cloudflare Tunnel / ngrok）能正常连接 ---
         if transport == "http":
             _app = mcp.streamable_http_app()
-        else:
-            _app = mcp.sse_app()
         _app.add_middleware(
             CORSMiddleware,
             allow_origins=["*"],
@@ -1950,5 +1948,3 @@ if __name__ == "__main__":
         )
         logger.info("CORS middleware enabled for remote transport / 已启用 CORS 中间件")
         uvicorn.run(_app, host="0.0.0.0", port=OMBRE_PORT)
-    else:
-        mcp.run(transport=transport)

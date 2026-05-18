@@ -1937,7 +1937,7 @@ if __name__ == "__main__":
 
         # --- Add CORS middleware so remote clients (Cloudflare Tunnel / ngrok) can connect ---
         # --- 添加 CORS 中间件，让远程客户端（Cloudflare Tunnel / ngrok）能正常连接 ---
-        if transport == "streamable-http":
+        if transport == "http":
             _app = mcp.streamable_http_app()
         else:
             _app = mcp.sse_app()

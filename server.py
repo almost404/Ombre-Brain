@@ -1935,16 +1935,6 @@ if __name__ == "__main__":
         t = threading.Thread(target=_start_keepalive, daemon=True)
         t.start()
 
-        # --- Add CORS middleware so remote clients (Cloudflare Tunnel / ngrok) can connect ---
-        # --- 添加 CORS 中间件，让远程客户端（Cloudflare Tunnel / ngrok）能正常连接 ---
-        if transport == "http":
-            _app = mcp.streamable_http_app()
-        _app.add_middleware(
-            CORSMiddleware,
-            allow_origins=["*"],
-            allow_methods=["*"],
-            allow_headers=["*"],
-            expose_headers=["*"],
-        )
-        logger.info("CORS middleware enabled for remote transport / 已启用 CORS 中间件")
-        uvicorn.run(_app, host="0.0.0.0", port=OMBRE_PORT)
+        mcp.run(transport="streamable-http",
+        host="0.0.0.0", 
+        port=OMBRE_PORT)

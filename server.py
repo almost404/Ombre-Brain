@@ -1935,6 +1935,5 @@ if __name__ == "__main__":
         t = threading.Thread(target=_start_keepalive, daemon=True)
         t.start()
 
-        mcp.run(transport="streamable-http",
-        host="0.0.0.0", 
-        port=OMBRE_PORT)
+        mcp.run(transport="streamable-http")
+    
